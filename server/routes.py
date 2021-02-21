@@ -20,3 +20,9 @@ def queue(time_format,rating,cpu,join,user_id):
         return "ERROR ALREADY IN QUEUE"
     elif(join and not qued):
         player_que.append(que_item)
+        match = search_list(player_que,que_item)
+        if(match == None):
+            return "STILL LOOKING..."
+        else: 
+            pass
+
