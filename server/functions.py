@@ -57,3 +57,16 @@ def search_list(ls, que_item):
         return match_index
     else:
         return None
+
+
+def in_que(ls, item):
+    for i in ls:
+        if i.user_id == item.user_id:
+            return False
+    return True
+
+def get_index(ls, item):
+    for i in range(0,len(ls)):
+        if(ls[i].user_id == item.user_id):
+            return i
+    return None
