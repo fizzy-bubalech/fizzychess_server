@@ -1,5 +1,12 @@
-
 def sort_rating(ls):
+
+    """
+    The job of this function if to sort a give list of queued player obejcts and sorts them by their Elo rating.
+    
+    This functions returns the sorted list. 
+    
+    """
+
     if len(ls) > 1:
      #  r is the point where the ls is divided into two sublss
         r = len(ls)//2
@@ -36,8 +43,16 @@ def sort_rating(ls):
             k += 1
     return ls
 
-
 def search_list(ls, que_item):
+    """
+    The job of this function is to search in the given list of queued player for a match to a given, specifc, queued player object.
+
+    This function returns a tuple of the matched player's index and the users id:
+
+        return match_index, que_item[match_index].user_id
+
+    If a match is not found the function returns null: None.  
+    """
     ls = sort_rating(ls)
     item_index = 0
     while ls[0] != que_item:
@@ -54,10 +69,9 @@ def search_list(ls, que_item):
             match_index += 1
 
     if(match):
-        return match_index
+        return match_index, que_item[match_index].user_id
     else:
         return None
-
 
 def in_que(ls, item):
     for i in ls:

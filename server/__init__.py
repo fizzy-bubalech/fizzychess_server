@@ -1,4 +1,3 @@
-
 from flask import Flask, url_for , Response
 
 import time
@@ -16,6 +15,7 @@ class Que_item:
     rating = "1000"
     cpu = False
     join = True
+    match_id = ""
      
     def __init__(self, time_format, rating, cpu, join, user_id):
         self.time_format = time_format
@@ -30,12 +30,12 @@ class Move:
     start_time = time.time()
     end_time = time.time()
 
-    def __init__(self,white, move,start_time = time.time(), end_time = time.time()):
+    def __init__(self,white, move, move_n,start_time = time.time(), end_time = time.time()):
         self.white = white
         self.move = move
         self.start_time = start_time
         self.end_time = end_time
-
+        self.move_n = move_n
 
 class Game:
     board = chess.Board()
@@ -85,9 +85,5 @@ class Game:
                 #TODO resolve
         self.self_board.append(move_object)
         self.white_turn = not self.white_turn 
-
-        
-
-
 
 from server import routes
