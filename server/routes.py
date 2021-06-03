@@ -1,6 +1,6 @@
 from flask import Flask, url_for , Response
 
-from server import app, player_que, Que_item, queue_req_handling
+from server import app, queue_req_handling
 
 @app.route("/")
 def test():

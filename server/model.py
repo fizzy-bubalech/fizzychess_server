@@ -1,5 +1,5 @@
-import datetime
-from sqlalchemy import Column, DateTime, Integer, String, Date, ForeignKey, Float, Boolean, DateTime, PickleType
+
+from sqlalchemy import Column, Integer, String, Boolean, PickleType
 from sqlalchemy.ext.declarative import declarative_base
 from flask_login import UserMixin
 from sqlalchemy.sql.elements import collate
