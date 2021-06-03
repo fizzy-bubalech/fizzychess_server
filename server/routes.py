@@ -1,6 +1,7 @@
 from flask import Flask, url_for , Response
 
-from server import app, queue_req_handling
+from server import app
+from server.request_handling import queue_req_handling
 
 @app.route("/")
 def test():
@@ -15,4 +16,9 @@ def request(head,body,meta):
     if head in reqs.keys():
         return reqs[int(head)](head,body,user_id)
     else: 
-        return "Invalid Request Code"
+        return "Invalid Request Code", 400
+
+@app.errorhandler(404)
+
+def page_not_found(e):
+    return "fuck you page not found", 404
