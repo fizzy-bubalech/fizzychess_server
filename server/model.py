@@ -2,6 +2,7 @@ import datetime
 from sqlalchemy import Column, DateTime, Integer, String, Date, ForeignKey, Float, Boolean, DateTime, PickleType
 from sqlalchemy.ext.declarative import declarative_base
 from flask_login import UserMixin
+from sqlalchemy.sql.elements import collate
 
 
 Base = declarative_base()
@@ -20,8 +21,14 @@ class Game(Base):
     __tablename__ = 'games'
     id = Column(Integer, primary_key = True)
     white_id = Column(Integer)
-    black_id = Column(Integer)
-    board = Column(PickleType)
+    black_id = Column(Integer) 
+    board = Column(PickleType) # the board object
+    n_moves = Column(Integer) #How many moves was the gae up to the current point
+    white = Column(Boolean) #was white the last to play
+    start_time = Column(Integer) #in seconds, when white confiremd 
+    completed = Column(Boolean) # Has the game been completed
+    b_gamestart = Column(Boolean)
+    w_gamestart = Column(Boolean)
 
 class User(Base , UserMixin):
 	__tablename__ = 'users'

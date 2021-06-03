@@ -71,7 +71,7 @@ def search_list(ls, que_item):
     if(match):
         return match_index, que_item[match_index].user_id
     else:
-        return None
+        return None, None
 
 def in_que(ls, item):
     for i in ls:
