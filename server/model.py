@@ -31,11 +31,12 @@ class Game(Base):
     w_gamestart = Column(Boolean)
 
 class User(Base , UserMixin):
-	__tablename__ = 'users'
-	id = Column(Integer, primary_key=True)
-	username = Column(String(15), unique=True)
-	email = Column(String(50), unique=True)
-	password = Column(String(80))
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    username = Column(String(15), unique=True)
+    email = Column(String(50), unique=True)
+    password = Column(String(80))
+    rating = Column(Integer)
 
 class Queue(Base):
     __tablename__ = 'queue'

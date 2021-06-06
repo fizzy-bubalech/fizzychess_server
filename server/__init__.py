@@ -1,9 +1,9 @@
-from flask import Flask, url_for , Response
+from flask import Flask
 
 import time
 
-from sqlalchemy.sql.expression import true
-from sqlalchemy.sql.schema import Index
+from flask_login import LoginManager
+
 from . import chess
 import random
 import os
@@ -13,6 +13,10 @@ import os
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.urandom(24) 
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 player_que = []
 
@@ -31,12 +35,11 @@ class Que_item:
         self.user_id = user_id
 
 class Move_Object:
-    game_id = int()
+    game_id = ""
     white = False
     move = "e4"
     start_time = time.time()
     end_time = time.time()
-    game_id = 0
 
     def __init__(self,white, move, move_n,start_time = time.time(), end_time = time.time(), game_id = int()):
         self.game_id = game_id
@@ -84,6 +87,9 @@ class Game_Object:
             self.b_gamestart = True
 
     def push(self, move, start_time, end_time):
+        """
+        push(slef,move,start_time,end_time)
+        """
         self.board.push(move)
         move_object = Move_Object(move,self.white_turn, start_time, end_time,self.game_id)
         if(self.white_turn):
