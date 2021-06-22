@@ -1,10 +1,10 @@
 from sqlalchemy.sql.expression import false
-from server.model import Base, Move, Game, User, Queue, or_
+from server.model import Base, Move, Game, User, Queue
 
 from server import Game_Object, Move_Object, Que_item
 
 #imports for the sqlalchemy libary 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, or_
 from sqlalchemy.orm import sessionmaker
 
 #Creates the database session
