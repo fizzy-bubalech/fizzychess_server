@@ -51,7 +51,7 @@ class DatabaseQuery:
 		game_object.board = game.board
 		game_object.game_start = game.start_time
 		game_object.n_moves = game.n_moves
-		game_object.n_moves = game.n_moevs 
+		game_object.completed = game.completed 
 
 		game_object.self_board = self.get_moves(game.id)
 
@@ -77,6 +77,7 @@ class DatabaseQuery:
 		get_game.n_moves = game.n_moves
 		get_game.white = game.white_turn
 		get_game.start_time = game.start_time
+		get_game.completed = game.start_time
 		session.commit()
 
 	def add_move(self,move_object):

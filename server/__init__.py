@@ -3,6 +3,7 @@ from flask import Flask
 import time
 
 from flask_login import LoginManager
+from sqlalchemy.sql.expression import false
 
 from . import chess
 import random
@@ -52,6 +53,7 @@ class Move_Object:
 class Game_Object:
 
     #TODO add draw offer and add resolution thing
+    
     game_id = int()
     board = chess.Board()
     self_board = [] #the moves along with the times, a stack of move objects 
@@ -69,6 +71,7 @@ class Game_Object:
     n_moves = 0 #the number of moves in the game
 
     white_turn = True
+    completed = false
 
     def __init__(self, player_1, player_2):
         coin_flip = random.randint(1, 2)

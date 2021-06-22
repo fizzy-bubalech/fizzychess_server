@@ -8,7 +8,7 @@ from flask_login import UserMixin, login_user, login_required, logout_user, curr
 
 from server import Que_item, Game_Object
 
-
+import time
 
 class request_handling:
     
@@ -112,15 +112,37 @@ class request_handling:
         '''
         This functions handles game related requests, 201, 202, 203, 204, 205
         '''
-        in_game = self.query.get_user_id(user_id) is not None
+        
         user = self.query.get_user_id(user_id)
+        current_game = self.query.get_game_by_id_not_completed(user_id)
+        in_game = current_game is not None
         if(len(head) != 3):
             return "2000"
         head = head[2]
         if head == 1:
-            if()
-
-
+            if(not in_game):
+                return "2012"
+            try:   
+                last_move = self.query.get_moves(current_game.id)[-1]
+                return f"2011,{last_move.move}|{current_game.b_clock}|{current_game.w_clock}"
+            except:
+                return 2013
+        if head == 2:
+            if(not in_game):
+                return 2022
+            try:
+                info = body.split("|")
+                current_game = self.query.get_game(int(info[0]))
+                last_move = self.query.get_moves(int(info[0]))[-1]
+                current_game.push(info[1], last_move.end_time, time.time())
+                self.query.update_game(current_game,info[0])
+                return 2021
+            except:
+                return 2023
+        if(head == 3):
+            if(not in_game):
+                return 2032
+            
 
     def login_user_handler(self, meta):
         info = meta.split("|")

@@ -1,6 +1,7 @@
 from flask import Flask, url_for , Response
 
 from flask_login import UserMixin, login_user, login_required, logout_user, current_user
+from sqlalchemy.orm import query_expression
 
 from server.database import DatabaseQuery
 
@@ -29,6 +30,8 @@ def request(head,body,meta):
         user_id = handler.login_request_handling(body)
         if(user_id == None):
             return 3032
+        elif(user_id != None):
+            return 3031
     else:
         return 3000
     reqs = {101:handler.queue_req_handling,
